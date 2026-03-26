@@ -1,20 +1,62 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <nav class="nav_container">
+      <img class="logo" src="assets/logo.svg" alt="Logo" />
+      <a href="#" class="nav-link"><i class="fa-solid fa-house"></i></a>
+      <a href="#" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a href="#" class="nav-link"><i class="fa-solid fa-phone"></i></a>
+      <a href="#" class="nav-link"><i class="fa-solid fa-users"></i></a>
+    </nav>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+  <section class="home_interface">
+    <!-- Info Section -->
+    <section class="info_home_section">
+      <div class="title_pawtrolpups_container">
+        <img class="pawtrol-pups-text" src="assets/Pawtrol Pups.svg" alt="Pawtrol Pups">
+      </div>
+
+      <div class="info_text_container">
+        <img class="info-text" src="assets/info-p.svg" alt="Información">
+        <a href="#" class="see-more">See more information</a>
+      </div>
+    </section>
+
+    <div class="pet-line-container">
+      <img class="img-pet-line" src="assets/pets-line.svg" alt="Pets line">
+    </div>
+
+    <!-- Arrow -->
+    <div class="button_container">
+      <button class="button-arrow" (click)="scrollToNext()" aria-label="Scroll to next section">
+        <img src="assets/arrow.svg" alt="Siguiente sección">
+      </button>
+    </div>
+
+  </section>
+
+  <!-- Buttons -->
+  <section class="btns" id="next-section">
+    <div class="btn_container">
+      <a href="#" class="link_report">
+        <img src="assets/R-btn.svg" alt="report-btn">
+      </a>
+
+      <a href="#" class="link_maps">
+        <div class="btn_overlay">
+          <img src="assets/M-btn.png" class="maps-btn">
+          <img src="assets/paws.png" class="img_paws">
+        </div>
+      </a>
+
+      <a href="#" class="link_signin">
+        <img src="assets/S-btn.svg" alt="sign in-btn">
+      </a>
+    </div>
+  </section>
+
+  
 </ion-content>
