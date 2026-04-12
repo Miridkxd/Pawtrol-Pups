@@ -12,15 +12,14 @@
 
 <ion-content [fullscreen]="true">
 
+  <!-- Home -->
   <section class="home_interface">
-    <!-- Info Section -->
     <section class="info_home_section">
       <div class="title_pawtrolpups_container">
         <img class="pawtrol-pups-text" src="assets/Pawtrol Pups.svg" alt="Pawtrol Pups">
       </div>
-
       <div class="info_text_container">
-        <img class="info-text" src="assets/info-p.svg" alt="Información">
+        <img class="info-text" src="assets/info-text.svg" alt="Información">
         <a href="#" class="see-more">See more information</a>
       </div>
     </section>
@@ -29,13 +28,11 @@
       <img class="img-pet-line" src="assets/pets-line.svg" alt="Pets line">
     </div>
 
-    <!-- Arrow -->
     <div class="button_container">
       <button class="button-arrow" (click)="scrollToNext()" aria-label="Scroll to next section">
         <img src="assets/arrow.svg" alt="Siguiente sección">
       </button>
     </div>
-
   </section>
 
   <!-- Buttons -->
@@ -44,19 +41,539 @@
       <a href="#" class="link_report">
         <img src="assets/R-btn.svg" alt="report-btn">
       </a>
-
       <a href="#" class="link_maps">
         <div class="btn_overlay">
           <img src="assets/M-btn.png" class="maps-btn">
           <img src="assets/paws.png" class="img_paws">
         </div>
       </a>
-
       <a href="#" class="link_signin">
         <img src="assets/S-btn.svg" alt="sign in-btn">
       </a>
     </div>
   </section>
 
-  
+  <!-- Contacts -->
+  <section class="contacts_container">
+
+    <div class="section_emergency">
+      <h2 class="h2_contacts">🚨 Emergency</h2>
+      <div class="grid_contacts">
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">911</div>
+            <div class="small_contacts">Animal abuse / Public emergencies</div>
+          </div>
+          <a class="btn_contacts" href="tel:911">Call</a>
+        </div>
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">0800-333-47225</div>
+            <div class="small_contacts">Animal abuse reports (CABA, 24/7)</div>
+          </div>
+          <a class="btn_contacts" href="tel:080033347225">Call</a>
+        </div>
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">Wildlife Rescue</div>
+            <div class="small_contacts">Injured wildlife (CABA)</div>
+            <div class="phone_contacts">+54 9 11-5050-4016</div>
+          </div>
+          <a class="btn_contacts" href="tel:+5491150504016">Call</a>
+        </div>
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">107</div>
+            <div class="small_contacts">Medical emergencies</div>
+          </div>
+          <a class="btn_contacts" href="tel:107">Call</a>
+        </div>
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">100</div>
+            <div class="small_contacts">Fire Department</div>
+          </div>
+          <a class="btn_contacts" href="tel:100">Call</a>
+        </div>
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">144</div>
+            <div class="small_contacts">Gender violence support</div>
+          </div>
+          <a class="btn_contacts" href="tel:144">Call</a>
+        </div>
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">106</div>
+            <div class="small_contacts">Nautical emergencies</div>
+          </div>
+          <a class="btn_contacts" href="tel:106">Call</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section_vets">
+      <h2 class="h2_contacts">🐾 24h Veterinary Clinics</h2>
+      <div class="grid_contacts">
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">Panda Veterinary Clinic</div>
+            <div class="small_contacts">Saavedra – Ruiz Huidobro 4771</div>
+            <div class="phone_contacts">11-5515-2302</div>
+          </div>
+          <a class="btn_contacts" href="tel:1155152302">Call</a>
+        </div>
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">Boedo Veterinary Center</div>
+            <div class="small_contacts">Av. Boedo 840</div>
+            <div class="phone_contacts">4931-4425</div>
+          </div>
+          <a class="btn_contacts" href="tel:49314425">Call</a>
+        </div>
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">Avellaneda Veterinary Center</div>
+            <div class="small_contacts">Avellaneda 3434</div>
+            <div class="phone_contacts">4828-3874</div>
+          </div>
+          <a class="btn_contacts" href="tel:48283874">Call</a>
+        </div>
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">Olivos Veterinary Center</div>
+            <div class="small_contacts">North Zone</div>
+            <div class="phone_contacts">11-7727-9967</div>
+          </div>
+          <a class="btn_contacts" href="tel:1177279967">Call</a>
+        </div>
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">San Miguel Clinic</div>
+            <div class="small_contacts">24h Veterinary</div>
+            <div class="phone_contacts">011 6008-4781</div>
+          </div>
+          <a class="btn_contacts" href="tel:01160084781">Call</a>
+        </div>
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">Merlo Norte Veterinary</div>
+            <div class="small_contacts">West Zone</div>
+            <div class="phone_contacts">0220-485-5637</div>
+          </div>
+          <a class="btn_contacts" href="tel:02204855637">Call</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="section_free_hospitals">
+      <h2 class="h2_contacts">🏥 Free Veterinary Hospitals</h2>
+      <div class="grid_contacts">
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">Ituzaingó</div>
+            <div class="small_contacts">Municipal Veterinary Clinic</div>
+            <div class="phone_contacts">2120-1960</div>
+          </div>
+          <a class="btn_contacts" href="tel:21201960">Call</a>
+        </div>
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">Malvinas Argentinas</div>
+            <div class="small_contacts">Zoonosis Department</div>
+            <div class="phone_contacts">4663-7560</div>
+          </div>
+          <a class="btn_contacts" href="tel:46637560">Call</a>
+        </div>
+        <div class="card_contacts">
+          <div>
+            <div class="title_contacts">Berazategui</div>
+            <div class="small_contacts">Municipal Veterinary Clinic</div>
+            <div class="phone_contacts">4356-9200</div>
+          </div>
+          <a class="btn_contacts" href="tel:43569200">Call</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Missing Pets Section -->
+  <section class="missing-section_container">
+    <div class="top_bar">
+      <span class="zero">0</span>
+      <span class="notifications">No notifications yet</span>
+    </div>
+
+    <section class="section_tmissing_container">
+      <div class="cards_header">
+        <button class="btn_add" (click)="openCreateModal()">
+          <i class="fas fa-plus"></i> Add one
+        </button>
+        <button class="btn_filter" (click)="toggleFilterBox($event)">
+          <i class="fas fa-sliders-h"></i> Filter ▼
+        </button>
+
+        <div class="filter_box" id="filterBox">
+          <div class="filter_section">
+            <span class="filter_title">📍 Location</span>
+            <input type="text" id="locationSearch" placeholder="Search location..." class="location-search">
+            <div class="tags_container" id="tagsLocation">
+              <select id="locationSelect" class="filterSelect">
+                <option value="">Select...</option>
+                <option value="Buenos Aires, Zone norte, Acassuso">Acassuso</option>
+                <option value="Buenos Aires, Zone sur, Adrogué">Adrogué</option>
+                <option value="Buenos Aires, Interior, Azul">Azul</option>
+                <option value="Buenos Aires, Zone sur, Avellaneda Centro">Avellaneda Centro</option>
+                <option value="Buenos Aires, Interior, Bahía Blanca">Bahía Blanca</option>
+                <option value="Buenos Aires, Interior, Balcarce">Balcarce</option>
+                <option value="Buenos Aires, Zone sur, Banfield">Banfield</option>
+                <option value="Buenos Aires, Zone norte, Beccar">Beccar</option>
+                <option value="Buenos Aires, Zone norte, Benavídez">Benavídez</option>
+                <option value="Buenos Aires, Zone sur, Berazategui">Berazategui</option>
+                <option value="Buenos Aires, Zone sur, Bernal">Bernal</option>
+                <option value="Buenos Aires, La Plata area, Berisso">Berisso</option>
+                <option value="Buenos Aires, Zone norte, Billinghurst">Billinghurst</option>
+                <option value="Buenos Aires, Interior, Bolívar">Bolívar</option>
+                <option value="Buenos Aires, Zone sur, Bosques">Bosques</option>
+                <option value="Buenos Aires, Zone norte, Boulogne">Boulogne</option>
+                <option value="Buenos Aires, Interior, Bragado">Bragado</option>
+                <option value="Buenos Aires, Zone sur, Burzaco">Burzaco</option>
+                <option value="Buenos Aires, Interior, Campana">Campana</option>
+                <option value="Buenos Aires, Interior, Cañuelas">Cañuelas</option>
+                <option value="Buenos Aires, Zone norte, Carapachay">Carapachay</option>
+                <option value="Buenos Aires, Zone oeste, Caseros">Caseros</option>
+                <option value="Buenos Aires, Zone oeste, Castelar">Castelar</option>
+                <option value="Buenos Aires, Interior, Chacabuco">Chacabuco</option>
+                <option value="Buenos Aires, Interior, Chascomús">Chascomús</option>
+                <option value="Buenos Aires, Interior, Chivilcoy">Chivilcoy</option>
+                <option value="Buenos Aires, Zone sur, Claypole">Claypole</option>
+                <option value="Buenos Aires, Interior, Colón">Colón</option>
+                <option value="Buenos Aires, Interior, Coronel Pringles">Coronel Pringles</option>
+                <option value="Buenos Aires, Interior, Coronel Suárez">Coronel Suárez</option>
+                <option value="Buenos Aires, Zone oeste, Ciudad Evita">Ciudad Evita</option>
+                <option value="Buenos Aires, Zone oeste, Ciudadela">Ciudadela</option>
+                <option value="Buenos Aires, La Plata area, City Bell">City Bell</option>
+                <option value="Buenos Aires, Interior, Dolores">Dolores</option>
+                <option value="Buenos Aires, Zone sur, Dock Sud">Dock Sud</option>
+                <option value="Buenos Aires, Zone sur, Don Orione">Don Orione</option>
+                <option value="Buenos Aires, Zone norte, Don Torcuato">Don Torcuato</option>
+                <option value="Buenos Aires, Zone oeste, El Palomar">El Palomar</option>
+                <option value="Buenos Aires, Zone norte, El Talar">El Talar</option>
+                <option value="Buenos Aires, Interior, Escobar">Escobar</option>
+                <option value="Buenos Aires, La Plata area, Ensenada">Ensenada</option>
+                <option value="Buenos Aires, Zone sur, Ezpeleta">Ezpeleta</option>
+                <option value="Buenos Aires, Zone norte, Florida">Florida</option>
+                <option value="Buenos Aires, Zone sur, Florencio Varela">Florencio Varela</option>
+                <option value="Buenos Aires, Interior, General Belgrano">General Belgrano</option>
+                <option value="Buenos Aires, Zone norte, General Pacheco">General Pacheco</option>
+                <option value="Buenos Aires, Interior, General Rodríguez">General Rodríguez</option>
+                <option value="Buenos Aires, Zone sur, Gerli">Gerli</option>
+                <option value="Buenos Aires, Zone sur, Glew">Glew</option>
+                <option value="Buenos Aires, Zone oeste, González Catán">González Catán</option>
+                <option value="Buenos Aires, La Plata area, Gonnet">Gonnet</option>
+                <option value="Buenos Aires, Zone oeste, Gregorio de Laferrere">Gregorio de Laferrere</option>
+                <option value="Buenos Aires, Zone oeste, Haedo">Haedo</option>
+                <option value="Buenos Aires, Zone sur, Hudson">Hudson</option>
+                <option value="Buenos Aires, Zone oeste, Hurlingham">Hurlingham</option>
+                <option value="Buenos Aires, Zone norte, José León Suárez">José León Suárez</option>
+                <option value="Buenos Aires, Interior, Junín">Junín</option>
+                <option value="Buenos Aires, La Plata area, La Plata">La Plata</option>
+                <option value="Buenos Aires, Zone oeste, Laferrere">Laferrere</option>
+                <option value="Buenos Aires, Zone norte, Martínez">Martínez</option>
+                <option value="Buenos Aires, Interior, Magdalena">Magdalena</option>
+                <option value="Buenos Aires, Zone sur, Lomas de Zamora">Lomas de Zamora</option>
+                <option value="Buenos Aires, Interior, Lobos">Lobos</option>
+                <option value="Buenos Aires, Zone sur, Longchamps">Longchamps</option>
+                <option value="Buenos Aires, Interior, Luján">Luján</option>
+                <option value="Buenos Aires, La Plata area, Los Hornos">Los Hornos</option>
+                <option value="Buenos Aires, Interior, Mar del Plata">Mar del Plata</option>
+                <option value="Buenos Aires, Interior, Marcos Paz">Marcos Paz</option>
+                <option value="Buenos Aires, Interior, Mercedes">Mercedes</option>
+                <option value="Buenos Aires, Zone oeste, Merlo">Merlo</option>
+                <option value="Buenos Aires, Zone sur, Ministro Rivadavia">Ministro Rivadavia</option>
+                <option value="Buenos Aires, Interior, Monte">Monte</option>
+                <option value="Buenos Aires, Zone sur, Monte Chingolo">Monte Chingolo</option>
+                <option value="Buenos Aires, Zone oeste, Moreno">Moreno</option>
+                <option value="Buenos Aires, Zone oeste, Morón">Morón</option>
+                <option value="Buenos Aires, Zone norte, Munro">Munro</option>
+                <option value="Buenos Aires, Interior, Navarro">Navarro</option>
+                <option value="Buenos Aires, Interior, Necochea">Necochea</option>
+                <option value="Buenos Aires, Zone norte, Nordelta">Nordelta</option>
+                <option value="Buenos Aires, Interior, Nueve de Julio">Nueve de Julio</option>
+                <option value="Buenos Aires, Zone norte, Olivos">Olivos</option>
+                <option value="Buenos Aires, Interior, Olavarría">Olavarría</option>
+                <option value="Buenos Aires, Zone oeste, Paso del Rey">Paso del Rey</option>
+                <option value="Buenos Aires, Interior, Pehuajó">Pehuajó</option>
+                <option value="Buenos Aires, Interior, Pergamino">Pergamino</option>
+                <option value="Buenos Aires, Interior, Pilar">Pilar</option>
+                <option value="Buenos Aires, Interior, Pinamar">Pinamar</option>
+                <option value="Buenos Aires, Zone sur, Plátanos">Plátanos</option>
+                <option value="Buenos Aires, Zone norte, Punta Alta">Punta Alta</option>
+                <option value="Buenos Aires, La Plata area, Punta Lara">Punta Lara</option>
+                <option value="Buenos Aires, Zone sur, Quilmes">Quilmes</option>
+                <option value="Buenos Aires, Interior, Rauch">Rauch</option>
+                <option value="Buenos Aires, Zone oeste, Ramos Mejía">Ramos Mejía</option>
+                <option value="Buenos Aires, Zone sur, Rafael Calzada">Rafael Calzada</option>
+                <option value="Buenos Aires, Zone sur, Ranelagh">Ranelagh</option>
+                <option value="Buenos Aires, Zone sur, Remedios de Escalada">Remedios de Escalada</option>
+                <option value="Buenos Aires, Interior, Rojas">Rojas</option>
+                <option value="Buenos Aires, Interior, Saladillo">Saladillo</option>
+                <option value="Buenos Aires, Zone oeste, Sáenz Peña">Sáenz Peña</option>
+                <option value="Buenos Aires, Zone sur, San Francisco Solano">San Francisco Solano</option>
+                <option value="Buenos Aires, Zone norte, San Fernando">San Fernando</option>
+                <option value="Buenos Aires, Zone norte, San Isidro">San Isidro</option>
+                <option value="Buenos Aires, Zone sur, San José">San José</option>
+                <option value="Buenos Aires, Zone oeste, San Justo">San Justo</option>
+                <option value="Buenos Aires, Zone norte, San Martín">San Martín</option>
+                <option value="Buenos Aires, Interior, San Nicolás">San Nicolás</option>
+                <option value="Buenos Aires, Interior, San Pedro">San Pedro</option>
+                <option value="Buenos Aires, Zone oeste, San Antonio de Padua">San Antonio de Padua</option>
+                <option value="Buenos Aires, Interior, San Antonio de Areco">San Antonio de Areco</option>
+                <option value="Buenos Aires, Interior, San Andrés de Giles">San Andrés de Giles</option>
+                <option value="Buenos Aires, Zone sur, Sarandí">Sarandí</option>
+                <option value="Buenos Aires, Zone oeste, Santos Lugares">Santos Lugares</option>
+                <option value="Buenos Aires, Interior, Tandil">Tandil</option>
+                <option value="Buenos Aires, Zone oeste, Tapalqué">Tapalqué</option>
+                <option value="Buenos Aires, Zone sur, Temperley">Temperley</option>
+                <option value="Buenos Aires, Zone oeste, Tapiales">Tapiales</option>
+                <option value="Buenos Aires, Zone norte, Tigre">Tigre</option>
+                <option value="Buenos Aires, La Plata area, Tolosa">Tolosa</option>
+                <option value="Buenos Aires, Interior, Trenque Lauquen">Trenque Lauquen</option>
+                <option value="Buenos Aires, Interior, Tres Arroyos">Tres Arroyos</option>
+                <option value="Buenos Aires, Zone oeste, Trujui">Trujui</option>
+                <option value="Buenos Aires, Zone sur, Turdera">Turdera</option>
+                <option value="Buenos Aires, Zone sur, Valentín Alsina">Valentín Alsina</option>
+                <option value="Buenos Aires, Zone norte, Victoria">Victoria</option>
+                <option value="Buenos Aires, Zone norte, Villa Ballester">Villa Ballester</option>
+                <option value="Buenos Aires, Zone sur, Villa Centenario">Villa Centenario</option>
+                <option value="Buenos Aires, Zone sur, Villa Dominico">Villa Dominico</option>
+                <option value="Buenos Aires, Zone sur, Villa Fiorito">Villa Fiorito</option>
+                <option value="Buenos Aires, La Plata area, Villa Elisa">Villa Elisa</option>
+                <option value="Buenos Aires, Interior, Villa Gesell">Villa Gesell</option>
+                <option value="Buenos Aires, Zone oeste, Villa Luzuriaga">Villa Luzuriaga</option>
+                <option value="Buenos Aires, Zone norte, Villa Martelli">Villa Martelli</option>
+                <option value="Buenos Aires, Zone oeste, Villa Tesei">Villa Tesei</option>
+                <option value="Buenos Aires, Zone oeste, Villa Udaondo">Villa Udaondo</option>
+                <option value="Buenos Aires, Zone norte, Virreyes">Virreyes</option>
+                <option value="Buenos Aires, Zone sur, Wilde">Wilde</option>
+                <option value="Buenos Aires, Zone oeste, William Morris">William Morris</option>
+                <option value="Buenos Aires, Interior, Zárate">Zárate</option>
+                <option value="Buenos Aires, Zone sur, Zeballos">Zeballos</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter_section">
+            <span class="filter_title">🐾 Species & Breed</span>
+            <div class="tags_container" id="tagsBreed">
+              <select class="filterSelect">
+                <option value="">Select...</option>
+                <optgroup label="🐶 Dog">
+                  <option value="Dog - Labrador">Labrador</option>
+                  <option value="Dog - Golden Retriever">Golden Retriever</option>
+                  <option value="Dog - German Shepherd">German Shepherd</option>
+                  <option value="Dog - French Bulldog">French Bulldog</option>
+                  <option value="Dog - Poodle">Poodle / Caniche</option>
+                  <option value="Dog - Beagle">Beagle</option>
+                  <option value="Dog - Dachshund">Dachshund</option>
+                  <option value="Dog - Siberian Husky">Siberian Husky</option>
+                  <option value="Dog - Rottweiler">Rottweiler</option>
+                  <option value="Dog - Yorkshire Terrier">Yorkshire Terrier</option>
+                  <option value="Dog - Mixed">Mixed / Mestizo</option>
+                </optgroup>
+                <optgroup label="🐱 Cat">
+                  <option value="Cat - Domestic Shorthair">Domestic Shorthair</option>
+                  <option value="Cat - Domestic Longhair">Domestic Longhair</option>
+                  <option value="Cat - Siamese">Siamese</option>
+                  <option value="Cat - Persian">Persian</option>
+                  <option value="Cat - Maine Coon">Maine Coon</option>
+                  <option value="Cat - Bengal">Bengal</option>
+                  <option value="Cat - Mixed">Mixed / Mestizo</option>
+                </optgroup>
+                <optgroup label="🐦 Bird">
+                  <option value="Bird - Parrot">Parrot</option>
+                  <option value="Bird - Parakeet">Parakeet / Budgie</option>
+                  <option value="Bird - Cockatiel">Cockatiel</option>
+                  <option value="Bird - Canary">Canary</option>
+                  <option value="Bird - Lovebird">Lovebird</option>
+                  <option value="Bird - Other">Other bird</option>
+                </optgroup>
+                <optgroup label="🐹 Small animals">
+                  <option value="Small - Rabbit">Rabbit</option>
+                  <option value="Small - Hamster">Hamster</option>
+                  <option value="Small - Guinea Pig">Guinea Pig</option>
+                  <option value="Small - Ferret">Ferret</option>
+                  <option value="Small - Chinchilla">Chinchilla</option>
+                </optgroup>
+                <optgroup label="🐢 Reptile">
+                  <option value="Reptile - Turtle">Turtle</option>
+                  <option value="Reptile - Gecko">Gecko</option>
+                  <option value="Reptile - Iguana">Iguana</option>
+                  <option value="Reptile - Snake">Snake</option>
+                </optgroup>
+                <optgroup label="🐟 Fish">
+                  <option value="Fish - Goldfish">Goldfish</option>
+                  <option value="Fish - Betta">Betta</option>
+                  <option value="Fish - Other">Other fish</option>
+                </optgroup>
+              </select>
+            </div>
+          </div>
+
+          <div class="filter_section">
+            <span class="filter_title">⏱ Last seen</span>
+            <div class="tags_container" id="tagsTime">
+              <select class="filterSelect">
+                <option value="">Select...</option>
+                <option value="1h">Last hour</option>
+                <option value="5h">Last 5 hours</option>
+                <option value="10h">Last 10 hours</option>
+                <option value="24h">Last 24 hours</option>
+                <option value="2d">Last 2 days</option>
+                <option value="1w">Last week</option>
+                <option value="2w">Last 2 weeks</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards_grid" id="cardsGrid"></div>
+    </section>
+
+    <!-- Modal: Post Detail -->
+    <div class="modal" id="modal">
+      <div class="modal_content">
+        <i class="fas fa-times close-modal" (click)="closeModal()"></i>
+        <div class="modal_img_wrapper">
+          <img src="" class="modal_img" id="modalImg" alt="pet">
+        </div>
+        <div class="modal_info">
+          <p><strong>📍 Location:</strong> <span id="modalLocation"></span></p>
+          <p><strong>📝 Description:</strong> <span id="modalDescription"></span></p>
+          <p><strong>🐕 Breed:</strong> <span id="modalBreed"></span></p>
+          <p><strong>🎨 Color:</strong> <span id="modalColor"></span></p>
+          <div class="modal_time_row">
+            <p><strong>⏱ Last seen:</strong> <span id="modalTime"></span></p>
+            <p><strong>📢 Published:</strong> <span id="modalPublished"></span></p>
+          </div>
+          <button class="btn_message" (click)="onSendMessage()">Send message</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Modal: Create New Post -->
+    <div class="modal" id="modalCreate">
+      <div class="modal_content modal_content--scrollable">
+        <i class="fas fa-times close-modal" (click)="closeCreateModal()"></i>
+        <h3>🐾 New publication</h3>
+        <form id="createForm" (ngSubmit)="onFormSubmit($event)">
+          <label>Image (URL or file):</label>
+          <input type="file" id="imageFile" accept="image/*">
+          <input type="url" id="imageUrl" placeholder="Or paste image URL">
+
+          <label>📍 Location:</label>
+          <input type="text" id="locationInput" required placeholder="e.g., Buenos Aires, Lomas">
+
+          <label>📝 Description:</label>
+          <textarea id="descriptionInput" rows="2" placeholder="Describe the pet"></textarea>
+
+          <label>🐾 Species & Breed:</label>
+          <select id="breedInput" required class="breed_select">
+            <option value="">Select...</option>
+            <optgroup label="🐶 Dog">
+              <option value="Dog - Labrador">Labrador</option>
+              <option value="Dog - Golden Retriever">Golden Retriever</option>
+              <option value="Dog - German Shepherd">German Shepherd</option>
+              <option value="Dog - French Bulldog">French Bulldog</option>
+              <option value="Dog - Poodle">Poodle / Caniche</option>
+              <option value="Dog - Beagle">Beagle</option>
+              <option value="Dog - Dachshund">Dachshund</option>
+              <option value="Dog - Siberian Husky">Siberian Husky</option>
+              <option value="Dog - Rottweiler">Rottweiler</option>
+              <option value="Dog - Yorkshire Terrier">Yorkshire Terrier</option>
+              <option value="Dog - Mixed">Mixed / Mestizo</option>
+            </optgroup>
+            <optgroup label="🐱 Cat">
+              <option value="Cat - Domestic Shorthair">Domestic Shorthair</option>
+              <option value="Cat - Domestic Longhair">Domestic Longhair</option>
+              <option value="Cat - Siamese">Siamese</option>
+              <option value="Cat - Persian">Persian</option>
+              <option value="Cat - Maine Coon">Maine Coon</option>
+              <option value="Cat - Bengal">Bengal</option>
+              <option value="Cat - Mixed">Mixed / Mestizo</option>
+            </optgroup>
+            <optgroup label="🐦 Bird">
+              <option value="Bird - Parrot">Parrot</option>
+              <option value="Bird - Parakeet">Parakeet / Budgie</option>
+              <option value="Bird - Cockatiel">Cockatiel</option>
+              <option value="Bird - Canary">Canary</option>
+              <option value="Bird - Lovebird">Lovebird</option>
+              <option value="Bird - Other">Other bird</option>
+            </optgroup>
+            <optgroup label="🐹 Small animals">
+              <option value="Small - Rabbit">Rabbit</option>
+              <option value="Small - Hamster">Hamster</option>
+              <option value="Small - Guinea Pig">Guinea Pig</option>
+              <option value="Small - Ferret">Ferret</option>
+              <option value="Small - Chinchilla">Chinchilla</option>
+            </optgroup>
+            <optgroup label="🐢 Reptile">
+              <option value="Reptile - Turtle">Turtle</option>
+              <option value="Reptile - Gecko">Gecko</option>
+              <option value="Reptile - Iguana">Iguana</option>
+              <option value="Reptile - Snake">Snake</option>
+            </optgroup>
+            <optgroup label="🐟 Fish">
+              <option value="Fish - Goldfish">Goldfish</option>
+              <option value="Fish - Betta">Betta</option>
+              <option value="Fish - Other">Other fish</option>
+            </optgroup>
+          </select>
+
+          <label>🎨 Color:</label>
+          <input type="text" id="colorInput" placeholder="e.g., Brown, White">
+
+          <label>⏱ Last seen:</label>
+          <input type="datetime-local" id="lastSeenInput">
+
+          <button type="submit" class="btn_publish">Publish</button>
+        </form>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer class="site_footer">
+    <div class="footer_inner">
+      <div class="footer_brand">
+        <img src="assets/logo.svg" alt="Pawtrol Pups" class="footer_logo">
+        <p class="footer_tagline">Helping reunite pets with their families.</p>
+      </div>
+      <div class="footer_links">
+        <a href="https://www.instagram.com/pawtrolpups2026/" target="_blank" aria-label="Instagram">
+          <i class="fa-brands fa-instagram"></i>
+        </a>
+        <a href="https://facebook.com/pawtrolpups" target="_blank" aria-label="Facebook">
+          <i class="fa-brands fa-facebook-f"></i>
+        </a>
+        <a href="https://x.com/PawtrolPups_26" target="_blank" aria-label="X / Twitter">
+          <i class="fa-brands fa-x-twitter"></i>
+        </a>
+        <a href="https://www.tiktok.com/@pawtrol_pups" target="_blank" aria-label="TikTok">
+          <i class="fa-brands fa-tiktok"></i>
+        </a>
+      </div>
+      <div class="footer_report">
+        <p>Found an error? <a href="mailto:pawtrolpups@gmail.com" target="_blank" class="footer_contact_link">Contact us</a></p>
+        <a href="#" class="footer_feedback_link">Give feedback about the app ↗</a>
+      </div>
+      <div class="footer_copy">
+        <p>© 2026 Pawtrol Pups. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
 </ion-content>
