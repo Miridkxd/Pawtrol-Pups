@@ -1,0 +1,199 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ion-content {
+    --background: #E7E4D1;           /* Tu color de fondo original */
+    font-family: 'Inter', sans-serif;
+}
+
+ion-toolbar {
+    --background: rgba(211, 214, 196, 0.92);
+    --padding-start: 0;
+    --padding-end: 0;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 56px;
+    width: 100%;
+    backdrop-filter: blur(8px);
+}
+
+.logo {
+    height: 36px;
+    margin: 0 20px;
+}
+
+nav a {
+    text-decoration: none;
+}
+
+nav i {
+    font-size: 24px;
+    margin: 0 14px;
+    color: #A3B39C;                  /* Color original de iconos */
+    transition: all 0.2s ease;
+    cursor: pointer;
+
+    &:hover {
+        color: #A3B39C;
+        transform: scale(1.08);
+    }
+}
+
+/* ---------- CONTENEDOR PRINCIPAL (minimalista) ---------- */
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    padding: 24px 20px;
+    gap: 24px;
+}
+
+/* ---------- SECCIÓN SUPERIOR (PERFIL) ---------- */
+.profile-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 20px 16px 28px;
+    background: #E7E4D1;              /* Mismo fondo que el contenido */
+    border-radius: 28px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+
+    .avatar {
+        width: 96px;
+        height: 96px;
+        margin-bottom: 16px;
+        background: rgba(211, 214, 196, 0.6);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        ion-icon {
+            font-size: 64px;
+            color: #7E8D7A;           /* Verde grisáceo de la paleta */
+        }
+    }
+
+    h1 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #3A4A3C;               /* Color oscuro original */
+        letter-spacing: -0.02em;
+        margin-bottom: 28px;
+    }
+
+    .btn-register {
+        width: 100%;
+        max-width: 280px;
+        --border-radius: 40px;
+        --background: #A3B39C;        /* Verde claro de tu paleta */
+        --color: #ffffff;
+        --box-shadow: none;
+        --padding-top: 14px;
+        --padding-bottom: 14px;
+        font-weight: 500;
+        font-size: 1.1rem;
+        text-transform: none;
+        letter-spacing: -0.01em;
+        margin: 0 auto;
+        height: 52px;
+
+        &:active {
+            --background: #8A9B83;     /* Un poco más oscuro al presionar */
+        }
+    }
+}
+
+/* ---------- SECCIÓN INFERIOR (CHAT) – fondo distinto ---------- */
+.chat-section {
+    background: #D3D6C4;               /* Fondo diferenciado pero dentro de la paleta */
+    border-radius: 28px;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
+    .chat-header {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 8px;
+
+        ion-icon {
+            font-size: 28px;
+            color: #5A6B55;            /* Tono más oscuro del verde */
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            font-weight: 550;
+            color: #3A4A3C;
+            margin: 0;
+        }
+    }
+
+    p {
+        font-size: 0.95rem;
+        color: #4A5D4E;
+        margin-bottom: 24px;
+        font-weight: 400;
+    }
+
+    .btn-signin {
+        width: 100%;
+        max-width: 280px;
+        --border-radius: 40px;
+        --border-width: 1.5px;
+        --border-color: #5A6B55;       /* Borde en verde oscuro */
+        --color: #3A4A3C;              /* Texto oscuro */
+        --background: transparent;
+        --box-shadow: none;
+        --padding-top: 14px;
+        --padding-bottom: 14px;
+        font-weight: 500;
+        font-size: 1.1rem;
+        text-transform: none;
+        letter-spacing: -0.01em;
+        margin: 0 auto;
+        height: 52px;
+
+        &:active {
+            --background: rgba(90, 107, 85, 0.05);
+        }
+    }
+}
+
+/* Ajustes para pantallas muy pequeñas */
+@media (max-width: 360px) {
+    .profile-section h1 {
+        font-size: 1.8rem;
+    }
+
+    .chat-section .chat-header h2 {
+        font-size: 1.6rem;
+    }
+
+    .btn-register,
+    .btn-signin {
+        font-size: 1rem;
+    }
+}
+
+
+
+
+

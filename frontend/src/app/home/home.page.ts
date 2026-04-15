@@ -1,7 +1,12 @@
-import { Component, ViewChild, OnInit } from '@angular/core';
+import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { IonHeader, IonToolbar, IonContent } from '@ionic/angular/standalone';
 import { db } from '../firebase.config';
-import { ref, push, onValue, DatabaseReference } from 'firebase/database';
+import { ref, push, onValue, remove, DatabaseReference } from 'firebase/database';
+import { getAuth, onAuthStateChanged, User } from 'firebase/auth';
+import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
 
 interface Post {
   id:                string;
@@ -12,6 +17,7 @@ interface Post {
   color?:            string;
   lastSeenTimestamp: number | null;
   timestamp:         number;
+  ownerUid:          string;
 }
 
 interface ActiveFilters {
@@ -26,30 +32,96 @@ type FilterCategory = keyof ActiveFilters;
   selector:    'app-home',
   templateUrl: 'home.page.html',
   styleUrls:   ['home.page.scss'],
-  imports:     [IonHeader, IonToolbar, IonContent],
+  imports: [
+  IonContent,
+  IonHeader,
+  IonToolbar,
+  CommonModule,
+  FormsModule,
+  RouterModule 
+]
+
 })
-export class HomePage implements OnInit {
+export class HomePage implements OnInit, AfterViewInit {
 
   @ViewChild(IonContent) content!: IonContent;
 
-  private postsRef: DatabaseReference = ref(db, 'posts');
-  private cardsData:     Post[]        = [];
-  private activeFilters: ActiveFilters = { location: [], breed: [], time: [] };
-  private currentCard:   Post | null   = null;
+  private postsRef:      DatabaseReference = ref(db, 'posts');
+  private cardsData:     Post[]            = [];
+  private activeFilters: ActiveFilters     = { location: [], breed: [], time: [] };
+  private currentCard:   Post | null       = null;
+  private currentUser:   User | null       = null;
 
   ngOnInit(): void {
+    // Limpia el hash de la URL al cargar
+    if (window.location.hash) {
+      history.replaceState(null, '', window.location.pathname);
+    }
+
+    const auth = getAuth();
+    onAuthStateChanged(auth, (user) => {
+      this.currentUser = user;
+    });
+
     this.loadDataFromFirebase();
+  }
+
+  ngAfterViewInit(): void {
     this.initFilters();
     this.initLocationSearch();
 
-    document.addEventListener('click', () => {
-      this.getEl('filterBox')?.classList.remove('active');
+    document.addEventListener('click', (e) => {
+      const filterBox = this.getEl('filterBox');
+      const btnFilter = this.getEl('btnFilter');
+      if (
+        filterBox &&
+        !filterBox.contains(e.target as Node) &&
+        !btnFilter?.contains(e.target as Node)
+      ) {
+        filterBox.classList.remove('active');
+      }
+    });
+
+    window.addEventListener('click', (e) => {
+      const modal       = this.getEl('modal');
+      const modalCreate = this.getEl('modalCreate');
+      if (e.target === modal)       this.closeModal();
+      if (e.target === modalCreate) this.closeCreateModal();
     });
   }
 
   scrollToNext(): void {
     const el = document.getElementById('next-section');
     if (el) this.content.scrollToPoint(0, el.offsetTop, 500);
+  }
+
+  scrollTo(sectionId: string): void {
+    const el = document.getElementById(sectionId);
+    if (!el) return;
+
+    this.content.getScrollElement().then(scrollEl => {
+      const start    = scrollEl.scrollTop;
+      const end      = el.offsetTop - 80;
+      const duration = 700;
+      let startTime  = 0;
+
+      const easeInOut = (t: number) =>
+        t < 0.5
+          ? 2 * t * t
+          : 1 - Math.pow(-2 * t + 2, 2) / 2;
+
+      const animate = (time: number) => {
+        if (!startTime) startTime = time;
+        const progress = (time - startTime) / duration;
+        const eased    = easeInOut(Math.min(progress, 1));
+
+        scrollEl.scrollTop = start + (end - start) * eased;
+
+        if (progress < 1) requestAnimationFrame(animate);
+      };
+
+      requestAnimationFrame(animate);
+    });
   }
 
   private getEl<T extends HTMLElement>(id: string): T {
@@ -63,6 +135,7 @@ export class HomePage implements OnInit {
     const hours = Math.floor(diff / 3_600_000);
     const days  = Math.floor(diff / 86_400_000);
     const weeks = Math.floor(diff / 604_800_000);
+
     if (mins  < 1)  return 'Just now';
     if (mins  < 60) return `${mins}m ago`;
     if (hours < 24) return `${hours}h ago`;
@@ -72,13 +145,13 @@ export class HomePage implements OnInit {
 
   private getTimeRangeMs(value: string): number | null {
     const map: Record<string, number> = {
-      '1h':  1  * 60 * 60 * 1000,
-      '5h':  5  * 60 * 60 * 1000,
-      '10h': 10 * 60 * 60 * 1000,
-      '24h': 24 * 60 * 60 * 1000,
-      '2d':  2  * 24 * 60 * 60 * 1000,
-      '1w':  7  * 24 * 60 * 60 * 1000,
-      '2w':  14 * 24 * 60 * 60 * 1000,
+      '1h':  3_600_000,
+      '5h':  18_000_000,
+      '10h': 36_000_000,
+      '24h': 86_400_000,
+      '2d':  172_800_000,
+      '1w':  604_800_000,
+      '2w':  1_209_600_000,
     };
     return map[value] ?? null;
   }
@@ -95,6 +168,7 @@ export class HomePage implements OnInit {
   private renderCards(): void {
     const cardsGrid = this.getEl<HTMLDivElement>('cardsGrid');
     if (!cardsGrid) return;
+
     cardsGrid.innerHTML = '';
 
     if (this.cardsData.length === 0) {
@@ -112,6 +186,7 @@ export class HomePage implements OnInit {
       el.setAttribute('data-location', card.location);
       el.setAttribute('data-breed',    card.breed);
       el.setAttribute('data-lastseen', String(card.lastSeenTimestamp ?? 0));
+
       el.innerHTML = `
         <img src="${card.img}" class="card_img" loading="lazy" alt="pet">
         <div class="card_info">
@@ -119,6 +194,7 @@ export class HomePage implements OnInit {
           <span class="time">⏱ ${this.formatTimestamp(card.lastSeenTimestamp)}</span>
         </div>
       `;
+
       el.addEventListener('click', () => this.openModal(card));
       cardsGrid.appendChild(el);
     });
@@ -128,17 +204,25 @@ export class HomePage implements OnInit {
 
   private applyFilters(): void {
     const now = Date.now();
+
     document.querySelectorAll<HTMLElement>('.card').forEach(card => {
       const location   = card.getAttribute('data-location') ?? '';
       const breed      = card.getAttribute('data-breed') ?? '';
       const lastSeenTs = parseInt(card.getAttribute('data-lastseen') ?? '0', 10);
 
-      const matchLocation = this.activeFilters.location.length === 0 || this.activeFilters.location.includes(location);
-      const matchBreed    = this.activeFilters.breed.length === 0    || this.activeFilters.breed.includes(breed);
+      const matchLocation =
+        this.activeFilters.location.length === 0 ||
+        this.activeFilters.location.includes(location);
+
+      const matchBreed =
+        this.activeFilters.breed.length === 0 ||
+        this.activeFilters.breed.includes(breed);
 
       let matchTime = true;
       if (this.activeFilters.time.length > 0) {
-        const ranges     = this.activeFilters.time.map(v => this.getTimeRangeMs(v)).filter((v): v is number => v !== null);
+        const ranges = this.activeFilters.time
+          .map(v => this.getTimeRangeMs(v))
+          .filter((v): v is number => v !== null);
         const maxRangeMs = Math.max(...ranges);
         matchTime = lastSeenTs > 0 && (now - lastSeenTs) <= maxRangeMs;
       }
@@ -164,11 +248,14 @@ export class HomePage implements OnInit {
     const tag = document.createElement('div');
     tag.className = 'tag';
     tag.innerHTML = `${value} <span>✖</span>`;
+
     tag.querySelector('span')!.addEventListener('click', () => {
-      this.activeFilters[category] = this.activeFilters[category].filter(v => v !== value);
+      this.activeFilters[category] =
+        this.activeFilters[category].filter(v => v !== value);
       tag.remove();
       this.applyFilters();
     });
+
     container.appendChild(tag);
   }
 
@@ -185,7 +272,8 @@ export class HomePage implements OnInit {
         const parentId = select.closest('.tags_container')?.id ?? '';
         const category = categoryMap[parentId];
 
-        if (!value || !category || this.activeFilters[category].includes(value)) return;
+        if (!value || !category) return;
+        if (this.activeFilters[category].includes(value)) return;
 
         this.activeFilters[category].push(value);
         this.createFilterTag(value, category);
@@ -198,6 +286,7 @@ export class HomePage implements OnInit {
   private initLocationSearch(): void {
     const searchInput    = this.getEl<HTMLInputElement>('locationSearch');
     const locationSelect = this.getEl<HTMLSelectElement>('locationSelect');
+
     if (!searchInput || !locationSelect) return;
 
     const allOptions  = Array.from(locationSelect.options).slice(1);
@@ -205,6 +294,7 @@ export class HomePage implements OnInit {
 
     searchInput.addEventListener('input', () => {
       const term = searchInput.value.toLowerCase().trim();
+
       locationSelect.innerHTML = '';
       locationSelect.appendChild(placeholder.cloneNode(true) as HTMLOptionElement);
 
@@ -224,8 +314,9 @@ export class HomePage implements OnInit {
     });
 
     locationSelect.addEventListener('change', () => {
-      locationSelect.size      = 0;
-      searchInput.value        = '';
+      locationSelect.size = 0;
+      searchInput.value   = '';
+
       locationSelect.innerHTML = '';
       locationSelect.appendChild(placeholder.cloneNode(true) as HTMLOptionElement);
       allOptions.forEach(opt => locationSelect.appendChild(opt.cloneNode(true) as HTMLOptionElement));
@@ -234,13 +325,18 @@ export class HomePage implements OnInit {
 
   private openModal(card: Post): void {
     this.currentCard = card;
-    this.getEl<HTMLImageElement>('modalImg').src       = card.img;
-    this.getEl('modalLocation').textContent            = card.location;
-    this.getEl('modalDescription').textContent         = card.description ?? 'No description';
-    this.getEl('modalBreed').textContent               = card.breed;
-    this.getEl('modalColor').textContent               = card.color ?? 'Not specified';
-    this.getEl('modalTime').textContent                = this.formatTimestamp(card.lastSeenTimestamp);
-    this.getEl('modalPublished').textContent           = this.formatTimestamp(card.timestamp);
+
+    this.getEl<HTMLImageElement>('modalImg').src  = card.img;
+    this.getEl('modalLocation').textContent       = card.location;
+    this.getEl('modalDescription').textContent    = card.description || 'No description';
+    this.getEl('modalBreed').textContent          = card.breed;
+    this.getEl('modalColor').textContent          = card.color || 'Not specified';
+    this.getEl('modalTime').textContent           = this.formatTimestamp(card.lastSeenTimestamp);
+    this.getEl('modalPublished').textContent      = this.formatTimestamp(card.timestamp);
+
+    const deleteBtn = this.getEl('deletePostBtn');
+    if (deleteBtn) deleteBtn.style.display = '';
+
     this.getEl('modal').classList.add('active');
   }
 
@@ -265,11 +361,22 @@ export class HomePage implements OnInit {
     this.getEl('filterBox').classList.toggle('active');
   }
 
+  async deleteCurrentPost(): Promise<void> {
+    if (!this.currentCard) return;
+
+    const confirmed = confirm('Are you sure you want to delete this post?');
+    if (!confirmed) return;
+
+    const postRef = ref(db, `posts/${this.currentCard.id}`);
+    await remove(postRef);
+    this.closeModal();
+  }
+
   private loadDataFromFirebase(): void {
     onValue(this.postsRef, (snapshot) => {
-      const data = snapshot.val() as Record<string, Omit<Post, 'id'>> | null;
+      const data = snapshot.val();
       this.cardsData = data
-        ? Object.entries(data).map(([id, card]) => ({ id, ...card }))
+        ? Object.entries(data).map(([id, card]: any) => ({ id, ...card }))
         : [];
       this.renderCards();
     }, (error) => {
@@ -287,20 +394,28 @@ export class HomePage implements OnInit {
     lastSeenTimestamp: number | null
   ): Promise<void> {
     try {
-      await push(this.postsRef, { img, location, description, breed, color, lastSeenTimestamp, timestamp: Date.now() });
+      await push(this.postsRef, {
+        img,
+        location,
+        description,
+        breed,
+        color,
+        lastSeenTimestamp,
+        timestamp: Date.now(),
+        ownerUid:  this.currentUser?.uid ?? ''
+      });
     } catch (error) {
       console.error('Firebase write error:', error);
       alert('Error saving to database.');
     }
   }
 
-  async onFormSubmit(e: SubmitEvent): Promise<void> {
-    e.preventDefault();
-
+  async onFormSubmit(): Promise<void> {
     const imageFileInput = this.getEl<HTMLInputElement>('imageFile');
     const imageUrlInput  = this.getEl<HTMLInputElement>('imageUrl');
 
     let imageUrl = '';
+
     if (imageFileInput.files && imageFileInput.files.length > 0) {
       imageUrl = await this.fileToBase64(imageFileInput.files[0]);
     } else if (imageUrlInput.value.trim()) {

@@ -1,0 +1,38 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <nav>
+      <img class="logo" src="assets/logo.svg" alt="Logo">
+      <a routerLink="/home"><i class="fa-solid fa-house"></i></a>
+      <a routerLink="/home"><i class="fa-solid fa-phone"></i></a>
+      <a routerLink="/home"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a routerLink="/home"><i class="fa-solid fa-users"></i></a>
+    </nav>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="page-container">
+    <!-- Sección superior: Perfil -->
+    <section class="profile-section">
+      <div class="avatar">
+        <ion-icon name="person-circle-outline"></ion-icon>
+      </div>
+      <h1>Anonimated</h1>
+      <ion-button expand="block" (click)="goToRegister()" class="btn-register">
+        Register
+      </ion-button>
+    </section>
+
+    <!-- Sección inferior: Chat (con fondo diferenciado) -->
+    <section class="chat-section">
+      <div class="chat-header">
+        <ion-icon name="chatbubble-outline"></ion-icon>
+        <h2>Chat</h2>
+      </div>
+      <p>Conecta y conversa</p>
+      <ion-button expand="block" fill="outline" (click)="goToSignIn()" class="btn-signin">
+        Sign in
+      </ion-button>
+    </section>
+  </div>
+</ion-content>

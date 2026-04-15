@@ -1,0 +1,145 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <nav>
+      <img class="logo" src="assets/logo.svg" alt="Logo">
+      <a routerLink="/home"><i class="fa-solid fa-house"></i></a>
+      <a routerLink="/home"><i class="fa-solid fa-phone"></i></a>
+      <a routerLink="/home"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a routerLink="/home"><i class="fa-solid fa-users"></i></a>
+    </nav>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <section class="report-section_container">
+
+    <!-- BOTÓN QUE ABRE EL MODAL -->
+    <button class="card" (click)="openModal()">
+      <div class="card__icon">
+        <img src="assets/Alert octagon.svg" alt="Alert icon">
+      </div>
+      <div class="card__body">
+        <p class="card__disclaimer">
+          Pawtrol Pups facilitates access but does not intervene in the legal process.
+        </p>
+        <div class="card__highlight">
+          <p class="card__title">Read before reporting</p>
+          <span class="card__subtitle">requirements, implications, process</span>
+        </div>
+      </div>
+    </button>
+
+    <!-- SECTION TITLE -->
+    <div class="menu-container">
+      <h2 class="section-title">Options</h2>
+    </div>
+
+    <!-- CARD 2 -->
+    <a class="card" href="https://denuncias.fiscalias.gob.ar/es" target="_blank">
+      <div class="card__icon">
+        <img src="assets/Shield.svg" alt="File a report">
+      </div>
+      <div class="card__body">
+        <div class="card__highlight">
+          <p class="card__title">File a report</p>
+          <span class="card__subtitle">Open an official web form</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- CARD 3 -->
+    <a class="card" href="https://www.mpba.gov.ar/seguimiento" target="_blank">
+      <div class="card__icon">
+        <img src="assets/File_Blank.svg" alt="Check status">
+      </div>
+      <div class="card__body">
+        <div class="card__highlight">
+          <p class="card__title">Check status</p>
+          <span class="card__subtitle">See the progress of my case</span>
+        </div>
+      </div>
+    </a>
+
+    <!-- WARNING BOX -->
+    <div class="warning-box">
+      <div class="warning-box__icon">
+        <img src="assets/Alert circle.svg" alt="Important">
+      </div>
+      <p class="warning-box__text">
+        <span class="warning-box__bold">Important:</span>
+        If the web form doesn't load or works incorrectly,
+        we recommend visiting your nearest police station in person.
+      </p>
+    </div>
+
+  </section>
+</ion-content>
+
+<!-- MODAL FUERA DE ion-content -->
+<div
+  class="modal-overlay"
+  [class.active]="isModalOpen"
+  (click)="onOverlayClick($event)"
+>
+  <div class="modal-box">
+
+    <button class="modal__close" (click)="closeModal()">✖</button>
+
+    <div class="modal__header">
+      <img src="assets/Alert octagon.svg" alt="Alert" class="modal__header-icon">
+      <h2 class="modal__title">Before you report</h2>
+      <p class="modal__subtitle">
+        Read this carefully before filing an animal abuse report online.
+      </p>
+    </div>
+
+    <div class="modal__body">
+
+      <div class="modal__section">
+        <h3 class="modal__section-title">📋 Requirements</h3>
+        <ul class="modal__list">
+          <li>Be of legal age (18+) or have a parent/guardian present.</li>
+          <li>Have a valid national ID (DNI) or passport on hand.</li>
+          <li>Provide real name and contact info.</li>
+          <li>Have evidence if possible: photos, videos, witnesses.</li>
+          <li>Describe facts clearly and in order.</li>
+        </ul>
+      </div>
+
+      <div class="modal__section">
+        <h3 class="modal__section-title">⚖️ Implications</h3>
+        <ul class="modal__list">
+          <li>False reports are a criminal offense.</li>
+          <li>The report enters an official legal process.</li>
+          <li>You may be contacted by authorities.</li>
+          <li>Penalties under <strong>Law 14.346</strong>.</li>
+        </ul>
+      </div>
+
+      <div class="modal__section">
+        <h3 class="modal__section-title">🔄 Process</h3>
+        <ol class="modal__list">
+          <li>Submit the official form.</li>
+          <li>Authorities receive it.</li>
+          <li>Case is reviewed.</li>
+          <li>Investigation may start.</li>
+          <li>Track with report number.</li>
+        </ol>
+      </div>
+
+      <div class="modal__disclaimer">
+        <img src="assets/Alert circle.svg" class="modal__disclaimer-icon">
+        <p>
+          <strong>Pawtrol Pups does not intervene in legal processes.</strong>
+          We only provide access to official tools.
+        </p>
+      </div>
+
+    </div>
+
+    <button class="modal__confirm" (click)="closeModal()">
+      I understand
+    </button>
+
+  </div>
+</div>

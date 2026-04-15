@@ -1,11 +1,12 @@
 <ion-header [translucent]="true">
+
   <ion-toolbar>
     <nav class="nav_container">
       <img class="logo" src="assets/logo.svg" alt="Logo" />
-      <a href="#" class="nav-link"><i class="fa-solid fa-house"></i></a>
-      <a href="#" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i></a>
-      <a href="#" class="nav-link"><i class="fa-solid fa-phone"></i></a>
-      <a href="#" class="nav-link"><i class="fa-solid fa-users"></i></a>
+      <a (click)="scrollTo('home_section')" class="nav-link"><i class="fa-solid fa-house"></i></a>
+      <a (click)="scrollTo('contacts_section')" class="nav-link"><i class="fa-solid fa-phone"></i></a>
+      <a (click)="scrollTo('missing_section')" class="nav-link"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a (click)="scrollTo('footer_section')" class="nav-link"><i class="fa-solid fa-users"></i></a>
     </nav>
   </ion-toolbar>
 </ion-header>
@@ -13,7 +14,7 @@
 <ion-content [fullscreen]="true">
 
   <!-- Home -->
-  <section class="home_interface">
+  <section class="home_interface" id="home_section">
     <section class="info_home_section">
       <div class="title_pawtrolpups_container">
         <img class="pawtrol-pups-text" src="assets/Pawtrol Pups.svg" alt="Pawtrol Pups">
@@ -38,23 +39,26 @@
   <!-- Buttons -->
   <section class="btns" id="next-section">
     <div class="btn_container">
-      <a href="#" class="link_report">
+      <a routerLink="/report" class="link_report">
         <img src="assets/R-btn.svg" alt="report-btn">
       </a>
-      <a href="#" class="link_maps">
+
+      <a routerLink="/maps" class="link_maps">
         <div class="btn_overlay">
           <img src="assets/M-btn.png" class="maps-btn">
           <img src="assets/paws.png" class="img_paws">
         </div>
       </a>
-      <a href="#" class="link_signin">
+
+      <a routerLink="/n-user" class="link_signin">
         <img src="assets/S-btn.svg" alt="sign in-btn">
       </a>
+
     </div>
   </section>
 
   <!-- Contacts -->
-  <section class="contacts_container">
+  <section class="contacts_container" id="contacts_section">
 
     <div class="section_emergency">
       <h2 class="h2_contacts">🚨 Emergency</h2>
@@ -199,21 +203,27 @@
   </section>
 
   <!-- Missing Pets Section -->
-  <section class="missing-section_container">
+  <section class="missing-section_container" id="missing_section">
+
+    <!-- Top Bar -->
     <div class="top_bar">
       <span class="zero">0</span>
       <span class="notifications">No notifications yet</span>
     </div>
 
+    <!-- Cards Section -->
     <section class="section_tmissing_container">
       <div class="cards_header">
-        <button class="btn_add" (click)="openCreateModal()">
+
+        <!-- Add & Filter buttons -->
+        <button class="btn_add" id="btnAddOne" (click)="openCreateModal()">
           <i class="fas fa-plus"></i> Add one
         </button>
-        <button class="btn_filter" (click)="toggleFilterBox($event)">
+        <button class="btn_filter" id="btnFilter" (click)="toggleFilterBox($event)">
           <i class="fas fa-sliders-h"></i> Filter ▼
         </button>
 
+        <!-- Filter box -->
         <div class="filter_box" id="filterBox">
           <div class="filter_section">
             <span class="filter_title">📍 Location</span>
@@ -445,7 +455,7 @@
     <!-- Modal: Post Detail -->
     <div class="modal" id="modal">
       <div class="modal_content">
-        <i class="fas fa-times close-modal" (click)="closeModal()"></i>
+        <i class="fas fa-times close-modal" id="closeModalBtn" (click)="closeModal()"></i>
         <div class="modal_img_wrapper">
           <img src="" class="modal_img" id="modalImg" alt="pet">
         </div>
@@ -458,7 +468,8 @@
             <p><strong>⏱ Last seen:</strong> <span id="modalTime"></span></p>
             <p><strong>📢 Published:</strong> <span id="modalPublished"></span></p>
           </div>
-          <button class="btn_message" (click)="onSendMessage()">Send message</button>
+          <button class="btn_message" id="sendMessageBtn" (click)="onSendMessage()">Send message</button>
+          <button class="btn_delete" id="deletePostBtn" style="display:none;" (click)="deleteCurrentPost()">🗑 Delete post</button>
         </div>
       </div>
     </div>
@@ -466,21 +477,21 @@
     <!-- Modal: Create New Post -->
     <div class="modal" id="modalCreate">
       <div class="modal_content modal_content--scrollable">
-        <i class="fas fa-times close-modal" (click)="closeCreateModal()"></i>
+        <i class="fas fa-times close-modal" id="closeCreateModalBtn" (click)="closeCreateModal()"></i>
         <h3>🐾 New publication</h3>
-        <form id="createForm" (ngSubmit)="onFormSubmit($event)">
+        <div id="createForm">
           <label>Image (URL or file):</label>
           <input type="file" id="imageFile" accept="image/*">
           <input type="url" id="imageUrl" placeholder="Or paste image URL">
 
           <label>📍 Location:</label>
-          <input type="text" id="locationInput" required placeholder="e.g., Buenos Aires, Lomas">
+          <input type="text" id="locationInput" placeholder="e.g., Buenos Aires, Lomas">
 
           <label>📝 Description:</label>
           <textarea id="descriptionInput" rows="2" placeholder="Describe the pet"></textarea>
 
           <label>🐾 Species & Breed:</label>
-          <select id="breedInput" required class="breed_select">
+          <select id="breedInput" class="breed_select">
             <option value="">Select...</option>
             <optgroup label="🐶 Dog">
               <option value="Dog - Labrador">Labrador</option>
@@ -538,15 +549,15 @@
           <label>⏱ Last seen:</label>
           <input type="datetime-local" id="lastSeenInput">
 
-          <button type="submit" class="btn_publish">Publish</button>
-        </form>
+          <button class="btn_publish" (click)="onFormSubmit()">Publish</button>
+        </div>
       </div>
     </div>
 
   </section>
 
   <!-- Footer -->
-  <footer class="site_footer">
+  <footer class="site_footer" id="footer_section">
     <div class="footer_inner">
       <div class="footer_brand">
         <img src="assets/logo.svg" alt="Pawtrol Pups" class="footer_logo">

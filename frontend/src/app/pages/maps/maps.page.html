@@ -1,0 +1,58 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <nav>
+      <img class="logo" src="assets/logo.svg" alt="Logo">
+      <a routerLink="/home"><i class="fa-solid fa-house"></i></a>
+      <a routerLink="/home"><i class="fa-solid fa-phone"></i></a>
+      <a routerLink="/home"><i class="fa-solid fa-magnifying-glass"></i></a>
+      <a routerLink="/home"><i class="fa-solid fa-users"></i></a>
+    </nav>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <!-- FILTROS -->
+  <div class="filters">
+    <button
+      [class.active]="currentFilter === 'all'"
+      (click)="setFilter('all')">Todos</button>
+    <button
+      [class.active]="currentFilter === 'vet'"
+      (click)="setFilter('vet')">Veterinarias</button>
+    <button
+      [class.active]="currentFilter === 'police'"
+      (click)="setFilter('police')">Comisarías</button>
+    <button
+      [class.active]="currentFilter === 'rescuer'"
+      (click)="setFilter('rescuers')">Rescatistas</button>
+  </div>
+
+  <!-- RADIO -->
+  <div class="radius">
+    <p>Radio: {{radius / 1000}} km</p>
+    <input
+      type="range"
+      min="1"
+      max="15"
+      step="1"
+      [value]="radius / 1000"
+      (input)="changeRadius($event)"
+    >
+  </div>
+
+  <!-- ESTADO DE CARGA / ERROR -->
+  <div *ngIf="loading" class="map-status">Cargando mapa...</div>
+  <div *ngIf="errorMsg" class="map-status error">{{ errorMsg }}</div>
+
+  <!-- MAPA -->
+  <div id="map"></div>
+
+<div class="open-filter">
+  <label class="open-checkbox">
+    <input type="checkbox" [(ngModel)]="onlyOpenNow" (change)="toggleOnlyOpen()">
+    <span>Solo lugares abiertos ahora</span>
+  </label>
+</div>
+
+</ion-content>
